@@ -3,21 +3,22 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'todo-app';
-  src=''
+  src = 'assets/images/bg-desktop-light.jpg';
 
-  light : boolean = false
-  
-  ngOnInit(){
-    if(this.light){
-      this.src= "assets/images/bg-desktop-light.jpg"
-      console.log("🚀 ~ file: app.component.ts:17 ~ AppComponent ~ ngOnInit ~ src:", this.src)
-    }
-    else {
-      this.src= "assets/images/bg-desktop-dark.jpg"
+  light: boolean | undefined;
+
+  ngOnInit() {}
+
+  newthemeChange(light: any) {
+    this.light = light;
+    if (this.light) {
+      this.src = 'assets/images/bg-desktop-light.jpg';
+    } else {
+      this.src = 'assets/images/bg-desktop-dark.jpg';
     }
   }
 }
