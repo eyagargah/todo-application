@@ -1,0 +1,57 @@
+.task-list {
+  background-color: white;
+  margin: 0 27% 0 25%;
+  border-radius: 8px;
+  position: absolute;
+  top: 16rem;
+
+  ul {
+    hr {
+      height: 1px;
+      border-width: 0;
+      color: gray;
+      background-color: lightgray;
+    }
+    li {
+      list-style: none;
+      .task {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 42.5rem 1rem 1rem;
+        align-items: baseline;
+        h3 {
+          color: hsl(235, 19%, 35%);
+          font-weight: 400;
+          margin-left: 4rem;
+          position: absolute;
+          margin-top: 0.5rem;
+        }
+        button {
+          background-color: transparent;
+        }
+        .checkBtn {
+          margin-left: 1rem;
+          border-radius: 50%;
+          border: 1px solid lightgray;
+          padding: 8px;
+          img {
+            visibility: hidden;
+          }
+        }
+        .deleteBtn {
+          background-color: transparent;
+          border: none;
+          position: absolute;
+          right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.hide {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
+}
