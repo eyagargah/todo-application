@@ -11,10 +11,10 @@ export class AppComponent {
   light: boolean | undefined;
 
   body = document.querySelector('body')
-  ngOnInit() {}
 
   newthemeChange(light: any) {
     this.light = light;
+    console.log(light)
     if (this.light) {
       this.src = 'assets/images/bg-desktop-light.jpg';
       if(this.body){
