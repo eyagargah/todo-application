@@ -12,7 +12,6 @@ export class HeaderComponent {
   img = document.querySelector('img')
  
   themeChange(e:any) {
-    console.log(e.src)
     if (this.src == 'assets/images/icon-moon.svg') {
       this.src = 'assets/images/icon-sun.svg';
       if(this.img) {
