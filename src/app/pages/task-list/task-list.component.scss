@@ -47,6 +47,30 @@
       }
     }
   }
+
+  .footer {
+    color: hsl(235, 19%, 35%);
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    color: gray;
+     h4 {
+      font-weight: 400;
+      
+     }
+    .tasks-control {
+      button {
+        font-weight: 700;
+        color: gray;
+        background-color: transparent;
+        border: none;
+        padding:  0   1rem;
+      }
+      button:active {
+        color: hsl(220, 98%, 61%);
+      }
+    }
+  }
 }
 
 .hide {
