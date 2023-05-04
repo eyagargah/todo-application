@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-app';
-  src = 'assets/images/bg-desktop-light.jpg';
+  srcDesktop = 'assets/images/bg-desktop-light.jpg';
+  srcMobile = 'assets/images/bg-mobile-light.jpg';
   light: boolean | undefined;
 
   body = document.querySelector('body')
@@ -16,7 +17,8 @@ export class AppComponent {
     this.light = light;
     console.log(light)
     if (this.light) {
-      this.src = 'assets/images/bg-desktop-light.jpg';
+      this.srcDesktop = 'assets/images/bg-desktop-light.jpg';
+      this.srcMobile = 'assets/images/bg-mobile-light.jpg';
       if(this.body){
         this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
         this.body.style.transition = "1s ease "
@@ -24,7 +26,8 @@ export class AppComponent {
 
       }
     } else {
-      this.src = 'assets/images/bg-desktop-dark.jpg';
+      this.srcDesktop = 'assets/images/bg-desktop-dark.jpg';
+      this.srcMobile = 'assets/images/bg-mobile-dark.jpg';
       if(this.body){
         this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
         this.body.style.transition = "1s ease "
