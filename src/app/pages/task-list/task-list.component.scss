@@ -1,10 +1,10 @@
 .task-list {
   background-color: white;
-  margin: 0 27% 0 25%;
+  margin: 0 25% 0 25%;
   border-radius: 8px;
   position: absolute;
   top: 16rem;
-
+  width: 50%;
   ul {
     hr {
       height: 1px;
@@ -17,7 +17,7 @@
       .task {
         display: flex;
         justify-content: space-between;
-        padding: 1rem 42.5rem 1rem 1rem;
+        padding: 1rem;
         align-items: baseline;
         h3 {
           color: hsl(235, 19%, 35%);
