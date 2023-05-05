@@ -37,6 +37,8 @@ export class AppComponent {
       this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
       this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
       this.body.style.transition = "1s ease "
+      this.body.style.backgroundSize = `cover`;
+      this.body.style.backgroundRepeat = `no-repeat`;
      
     } 
 
@@ -44,6 +46,8 @@ export class AppComponent {
       this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
       this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
       this.body.style.transition = "1s ease "
+      this.body.style.backgroundSize = `cover`;
+      this.body.style.backgroundRepeat = `no-repeat`;
      
     } 
     
@@ -51,12 +55,16 @@ export class AppComponent {
         this.body.style.backgroundImage = `url(${this.srcMobileDark})`;
         this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
         this.body.style.transition = "1s ease "
+        this.body.style.backgroundSize = `cover`;
+        this.body.style.backgroundRepeat = `no-repeat`;
       }
     
       if(this.body && !this.light && (!this.screenSize)){
         this.body.style.backgroundImage = `url(${this.srcDesktopDark})`;
         this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
         this.body.style.transition = "1s ease "
+        this.body.style.backgroundSize = `cover`;
+        this.body.style.backgroundRepeat = `no-repeat`;
       }
   }
 }
