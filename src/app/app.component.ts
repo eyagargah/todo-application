@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,39 +8,55 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-app';
-  srcDesktop = 'assets/images/bg-desktop-light.jpg';
-  srcMobile = 'assets/images/bg-mobile-light.jpg';
+  srcDesktopLight = 'assets/images/bg-desktop-light.jpg';
+  srcDesktopDark = 'assets/images/bg-desktop-dark.jpg';
+  srcMobileDark = 'assets/images/bg-mobile-dark.jpg';
+  srcMobileLight = 'assets/images/bg-mobile-light.jpg';
   light: boolean | undefined;
-  screenSize = window.screen.availWidth
+  screenSize = window.screen.availWidth < 600
+  body = document.querySelector('body')
 
   ngOnInit(){
     console.log(this.screenSize)
-    if(this.body){
-      this.body.style.backgroundImage = `url(${this.srcDesktop})`;
+    if(this.body && (!this.screenSize)){
+      this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
+      this.body.style.backgroundSize = `cover`;
+      this.body.style.backgroundRepeat = `no-repeat`;
+    }
+    if(this.body && (this.screenSize)){
+      this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
       this.body.style.backgroundSize = `cover`;
       this.body.style.backgroundRepeat = `no-repeat`;
     }
   }
-  body = document.querySelector('body')
+  
 
   newthemeChange(light: any) {
     this.light = light;
-    if (this.light && this.body) {
-      this.body.style.backgroundImage = `url(${this.srcDesktop})`;
-      this.srcMobile = 'assets/images/bg-mobile-light.jpg';
-      if(this.body){
-        this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
-        this.body.style.transition = "1s ease "
+    if (this.light && this.body && (this.screenSize)) {
+      this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
+      this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
+      this.body.style.transition = "1s ease "
+     
+    } 
 
-
-      }
-    } else {
-      this.srcDesktop = 'assets/images/bg-desktop-dark.jpg';
-      this.srcMobile = 'assets/images/bg-mobile-dark.jpg';
-      if(this.body){
+    if (this.light && this.body && (!this.screenSize)) {
+      this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
+      this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
+      this.body.style.transition = "1s ease "
+     
+    } 
+    
+      if(this.body && !this.light && (this.screenSize)){
+        this.body.style.backgroundImage = `url(${this.srcMobileDark})`;
         this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
         this.body.style.transition = "1s ease "
       }
-    }
+    
+      if(this.body && !this.light && (!this.screenSize)){
+        this.body.style.backgroundImage = `url(${this.srcDesktopDark})`;
+        this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
+        this.body.style.transition = "1s ease "
+      }
   }
 }
