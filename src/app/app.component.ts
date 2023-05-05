@@ -10,14 +10,22 @@ export class AppComponent {
   srcDesktop = 'assets/images/bg-desktop-light.jpg';
   srcMobile = 'assets/images/bg-mobile-light.jpg';
   light: boolean | undefined;
+  screenSize = window.screen.availWidth
 
+  ngOnInit(){
+    console.log(this.screenSize)
+    if(this.body){
+      this.body.style.backgroundImage = `url(${this.srcDesktop})`;
+      this.body.style.backgroundSize = `cover`;
+      this.body.style.backgroundRepeat = `no-repeat`;
+    }
+  }
   body = document.querySelector('body')
 
   newthemeChange(light: any) {
     this.light = light;
-    console.log(light)
-    if (this.light) {
-      this.srcDesktop = 'assets/images/bg-desktop-light.jpg';
+    if (this.light && this.body) {
+      this.body.style.backgroundImage = `url(${this.srcDesktop})`;
       this.srcMobile = 'assets/images/bg-mobile-light.jpg';
       if(this.body){
         this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
