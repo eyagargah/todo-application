@@ -54,8 +54,10 @@
   .footer {
     border: 1px black solid;
     display: grid;
-    grid-template-columns: 'left . btns . clear';
-    gap: 10%;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
     color: hsl(235, 19%, 35%);
     padding: 1.5rem;
     color: gray;
@@ -63,13 +65,13 @@
       font-weight: 400;
     }
     .left {
-      grid-area: left;
+      grid-area: 1 / 1 / 2 / 2;
     }
     .clear {
-      grid-area: clear;
+      grid-area: 1 / 5 / 2 / 6;
     }
     .tasks-control {
-      grid-area:btns ;
+      grid-area: 2 / 2 / 3 / 5;
       button {
         font-weight: 700;
         color: gray;
