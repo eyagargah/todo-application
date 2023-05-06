@@ -66,12 +66,17 @@
     }
     .left {
       grid-area: 1 / 1 / 2 / 2;
+      border: black solid 1px;
     }
     .clear {
       grid-area: 1 / 5 / 2 / 6;
+      border: black solid 1px;
+
     }
     .tasks-control {
       grid-area: 2 / 2 / 3 / 5;
+      border: black solid 1px;
+
       button {
         font-weight: 700;
         color: gray;
