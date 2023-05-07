@@ -123,6 +123,17 @@
     .mobile {
       display: none;
     }
+    .footer {
+      padding: 1.3rem;
+      align-items: center;
+      .desktop {
+        display: inline;
+        margin-top: 0;
+        padding: 0;
+
+      }
+      
+    }
   }
 }
 .hide {
