@@ -9,7 +9,11 @@ export class TaskInputComponent {
 
   input = document.querySelector('input')
   @Input() light : any
+  constructor(){
+    console.log(this.light)
+  }
   OnInit(){
+   
     if(this.light){
       if(this.input){
         this.input.style.backgroundColor = 'white';
@@ -20,6 +24,7 @@ export class TaskInputComponent {
         this.input.style.backgroundColor = 'hsl(235, 24%, 19%)';
       }
     }
+    
   }
 
 
