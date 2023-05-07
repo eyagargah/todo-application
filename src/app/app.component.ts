@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class AppComponent {
   light: boolean | undefined;
   screenSize = window.screen.availWidth < 600
   body = document.querySelector('body')
-
+ constructor(private cookiesService: CookieService){}
   ngOnInit(){
     console.log(this.screenSize)
     if(this.body && (!this.screenSize)){
@@ -32,6 +33,7 @@ export class AppComponent {
   
 
   newthemeChange(light: any) {
+    this.cookiesService.set('light', light)
     this.light = light;
     if (this.light && this.body && (this.screenSize)) {
       this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
