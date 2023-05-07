@@ -55,7 +55,8 @@
   .footer {
      background-color: white;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     justify-content: space-between;
     color: hsl(235, 19%, 35%);
@@ -71,7 +72,12 @@
   }
    .tasks-control {
      background-color: white;
-    margin-top: 1rem;
+     margin-top: 1rem;
+     padding: 1rem;
+     border-radius: 5px;
+     display: flex;
+     justify-content: center;
+
       button {
         font-weight: 700;
         color: gray;
