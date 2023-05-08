@@ -18,7 +18,6 @@ export class AppComponent {
   body = document.querySelector('body')
  constructor(private cookiesService: CookieService){}
   ngOnInit(){
-    console.log(this.screenSize)
     if(this.body && (!this.screenSize)){
       this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
       this.body.style.backgroundSize = `cover`;
@@ -33,8 +32,8 @@ export class AppComponent {
   
 
   newthemeChange(light: any) {
-    this.cookiesService.set('light', light)
     this.light = light;
+    console.log("🚀 ~ file: app.component.ts:37 ~ AppComponent ~ newthemeChange ~ light:", light)
     if (this.light && this.body && (this.screenSize)) {
       this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
       this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
