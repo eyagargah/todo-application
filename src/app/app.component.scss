@@ -5,6 +5,12 @@ body {
     height: 200px;
 }
 
+.dark {
+  background-color: hsl(235, 24%, 19%);
+}
+.light {
+  background-color: white;
+}
 @media screen and (min-width:600px) {
   body {
     background-size: cover;
