@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -7,24 +8,26 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() themeEvent = new EventEmitter<any>();
-  light: boolean = true;
-  src = 'assets/images/icon-sun.svg';
-  img = document.querySelector('img')
- 
-  themeChange(e:any) {
-    if (this.src == 'assets/images/icon-moon.svg') {
-      this.src = 'assets/images/icon-sun.svg';
-      if(this.img) {
-        this.img.style.transitionDelay = "2s ease "
-      }
+  light: any = this.cookiesService.get('light');
+  src = 'assets/images/icon-moon.svg';
+  img = document.querySelector('img');
+  constructor(private cookiesService: CookieService) {}
+
+  themeChange(e: any) {
+    if (this.src == 'assets/images/icon-sun.svg') {
       this.light = true;
-    } else {
       this.src = 'assets/images/icon-moon.svg';
+      if (this.img) {
+        this.img.style.transitionDelay = '2s ease ';
+      }
+    } else {
+      this.src = 'assets/images/icon-sun.svg';
       this.light = false;
-      if(this.img) {
-        this.img.style.transitionDelay = "2s ease "
+      
+      if (this.img) {
+        this.img.style.transitionDelay = '2s ease ';
       }
     }
-    this.themeEvent.emit(this.light)
+    this.themeEvent.emit(this.light);
   }
 }
