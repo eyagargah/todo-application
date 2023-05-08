@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-task-input',
@@ -9,24 +9,32 @@ import { CookieService } from 'ngx-cookie-service';
 export class TaskInputComponent {
 
   input = document.querySelector('input')
-  @Input() light : any 
-  constructor(private cookiesService: CookieService){
-    console.log("🚀 ~ file: task-input.component.ts:18 ~ TaskInputComponent ~ OnInit ~ light:", this.light)
-    
+  light : any 
+  constructor(private data: DataService){
   }
+
   ngOnInit(){
-    if(this.light){
-      if(this.input){
-        this.input.style.backgroundColor = 'white';
-      }
-    }
-    else {
-      if(this.input){
-        this.input.style.backgroundColor = 'hsl(235, 24%, 19%)';
-      }
-    }
-    
+    this.data.theme.subscribe( light => {
+      console.log("🚀 ~ file: task-input.component.ts:18 ~ TaskInputComponent ~ ngOnInit ~ light:", light)
+      return this.light = light
+    })
+    this.changeTheme()
   }
+    
+changeTheme(){
+  if(this.light){
+    if(this.input){
+      this.input.style.backgroundColor = 'white';
+    }
+  }
+  else {
+    if(this.input){
+      this.input.style.backgroundColor = 'hsl(235, 24%, 19%)';
+    }
+  }
+}
+   
+    
 
 
 }
