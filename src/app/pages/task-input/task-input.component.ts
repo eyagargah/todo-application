@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-task-input',
@@ -8,12 +9,12 @@ import { Component, Input } from '@angular/core';
 export class TaskInputComponent {
 
   input = document.querySelector('input')
-  @Input() light : any
-  constructor(){
-    console.log(this.light)
+  @Input() light : any 
+  constructor(private cookiesService: CookieService){
+    console.log("🚀 ~ file: task-input.component.ts:18 ~ TaskInputComponent ~ OnInit ~ light:", this.light)
+    
   }
-  OnInit(){
-   
+  ngOnInit(){
     if(this.light){
       if(this.input){
         this.input.style.backgroundColor = 'white';
