@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { DataService } from './data.service';
 
 
 @Component({
@@ -13,11 +14,14 @@ export class AppComponent {
   srcDesktopDark = 'assets/images/bg-desktop-dark.jpg';
   srcMobileDark = 'assets/images/bg-mobile-dark.jpg';
   srcMobileLight = 'assets/images/bg-mobile-light.jpg';
+
   light: boolean | undefined;
   screenSize = window.screen.availWidth < 600
   body = document.querySelector('body')
- constructor(private cookiesService: CookieService){}
+ constructor( private data:DataService){}
   ngOnInit(){
+
+    this.data.theme.subscribe( light => this.light = light)
     if(this.body && (!this.screenSize)){
       this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
       this.body.style.backgroundSize = `cover`;
@@ -33,7 +37,6 @@ export class AppComponent {
 
   newthemeChange(light: any) {
     this.light = light;
-    console.log("🚀 ~ file: app.component.ts:37 ~ AppComponent ~ newthemeChange ~ light:", light)
     if (this.light && this.body && (this.screenSize)) {
       this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
       this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
