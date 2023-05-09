@@ -6,6 +6,22 @@ const uri = 'mongodb+srv://gargaheya:mypassword@cluster0.nfdu7oj.mongodb.net/'
 
 const app = express()
 
+
+/*******Cors********/
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, HEAD, POST, PUT, DELETE, OPTIONS"
+    );
+    next();
+  });
+
+
 app.get('/', (req , res)=> {
     res.json('hello from my app')
 })
@@ -23,15 +39,17 @@ app.get('/tasks', async(req , res)=> {
         await client.close()
     }
 })
-
-app.get('/tasks', async(req , res)=> {
+app.post('/new', async(req , res)=> {
     const client = new MongoClient(uri)
+    const { task } = req.body
     try {
         await client.connect()
         const db = client.db('app-data')
         const tasks = db.collection('task')
 
-        const returnedTasks = await tasks.find().toArray()
+        const data = {
+            task : task
+        }
         res.send(returnedTasks)
     } finally{
         await client.close()
