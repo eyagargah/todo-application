@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import axios from 'axios';
 import { DataService } from 'src/app/data.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class TaskInputComponent {
 
   input = document.querySelector('input')
   light : any 
+  task : any
   constructor(private data: DataService){
   }
 
@@ -21,9 +23,12 @@ export class TaskInputComponent {
     this.changeTheme()
   }
 
- addTask(e: any){
+ addTask = async(e: any)=>  {
   if(e.key == "Enter"){
+    const response = await axios.get('http://localhost:8000/new', { task : e.target.value})
+    
     console.log(e.target.value)
+    const success = response.status === 201;
   }
  }
     
