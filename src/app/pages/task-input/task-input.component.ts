@@ -20,6 +20,12 @@ export class TaskInputComponent {
     })
     this.changeTheme()
   }
+
+ addTask(e: any){
+  if(e.key == "Enter"){
+    console.log(e.target.value)
+  }
+ }
     
 changeTheme(){
   if(this.light){
