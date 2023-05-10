@@ -23,7 +23,6 @@ getTasks = async()=> {
   const success = response.status ===201
 
   this.tasks = response.data
-  console.table(this.tasks)
 }
 
 }
