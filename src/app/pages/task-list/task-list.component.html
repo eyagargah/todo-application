@@ -1,47 +1,11 @@
 <div class="task-list">
-  <ul>
+  <ul *ngFor="let task of tasks">
     <li>
       <div class="task">
         <button class="checkBtn">
           <img src="../../../assets/images/icon-check.svg" alt="CHECK BTN" />
         </button>
-        <h3>walk the dog</h3>
-        <button class="deleteBtn">
-          <img src="../../../assets/images/icon-cross.svg" alt="delete" />
-        </button>
-      </div>
-    </li>
-    <hr />
-    <li>
-      <div class="task">
-        <button class="checkBtn">
-          <img src="../../../assets/images/icon-check.svg" alt="CHECK BTN" />
-        </button>
-        <h3>walk the dog</h3>
-        <button class="deleteBtn">
-          <img src="../../../assets/images/icon-cross.svg" alt="delete" />
-        </button>
-      </div>
-    </li>
-    <hr />
-    <li>
-      <div class="task">
-        <button class="checkBtn">
-          <img src="../../../assets/images/icon-check.svg" alt="CHECK BTN" />
-        </button>
-        <h3>walk the dog</h3>
-        <button class="deleteBtn">
-          <img src="../../../assets/images/icon-cross.svg" alt="delete" />
-        </button>
-      </div>
-    </li>
-    <hr />
-    <li>
-      <div class="task">
-        <button class="checkBtn">
-          <img src="../../../assets/images/icon-check.svg" alt="CHECK BTN" />
-        </button>
-        <h3>walk the dog</h3>
+        <h3>{{task.task}}</h3>
         <button class="deleteBtn">
           <img src="../../../assets/images/icon-cross.svg" alt="delete" />
         </button>
