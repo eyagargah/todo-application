@@ -34,23 +34,24 @@
           margin-top: 0.5rem;
           font-size: 0.9rem;
         }
-        button {
-          background-color: transparent;
-        }
+       
         .checkBtn {
+          background-color: transparent;
           margin-left: 0.4rem;
           border-radius: 50%;
           border: 1px solid lightgray;
           padding: 4px;
-          img {
-            visibility: hidden;
-          }
+          
         }
+        
         .deleteBtn {
           background-color: transparent;
           border: none;
           position: absolute;
           right: 1rem;
+          img {
+            width: 16px;
+          }
         }
       }
     }
@@ -108,17 +109,12 @@
           h3 {
             margin-left: 4rem;
           }
-          button {
-            background-color: transparent;
-          }
           .checkBtn {
             margin-left: 1rem;
             border-radius: 50%;
             border: 1px solid lightgray;
             padding: 8px;
-            img {
-              visibility: hidden;
-            }
+           
           }
         }
       }
@@ -145,4 +141,12 @@
 }
 .show {
   visibility: visible;
+}
+
+.checked {
+  background-image:  linear-gradient(50deg,hsl(192, 100%, 67%) , hsl(280, 87%, 65%)) ;
+}
+
+.strike {
+  text-decoration: line-through;
 }
