@@ -39,6 +39,7 @@ app.get('/tasks', async(req , res)=> {
         await client.close()
     }
 })
+
 app.post('/new', async(req , res)=> {
     const client = new MongoClient(uri)
     const { task } = req.body
