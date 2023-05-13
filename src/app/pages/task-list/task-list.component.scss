@@ -1,5 +1,4 @@
 .task-list {
- 
   margin: 0 5% 0 5%;
   border-radius: 5px;
   position: absolute;
@@ -7,10 +6,10 @@
   width: 90%;
 
   ul {
-     background-color: white;
-     border-top-left-radius: 5px;
-     border-top-right-radius: 5px;
-     
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
     hr {
       height: 1px;
       border-width: 0;
@@ -34,16 +33,15 @@
           margin-top: 0.5rem;
           font-size: 0.9rem;
         }
-       
+
         .checkBtn {
           background-color: transparent;
           margin-left: 0.4rem;
           border-radius: 50%;
           border: 1px solid lightgray;
           padding: 4px;
-          
         }
-        
+
         .deleteBtn {
           background-color: transparent;
           border: none;
@@ -58,8 +56,8 @@
   }
 
   .footer {
-     background-color: white;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     display: flex;
@@ -75,25 +73,25 @@
       display: none;
     }
   }
-   .tasks-control {
-     background-color: white;
-     margin-top: 1rem;
-     padding: 1rem;
-     border-radius: 5px;
-     display: flex;
-     justify-content: center;
+  .tasks-control {
+    background-color: white;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
 
-      button {
-        font-weight: 700;
-        color: gray;
-        background-color: transparent;
-        border: none;
-        padding: 0 1rem;
-      }
-      button:active {
-        color: hsl(220, 98%, 61%);
-      }
+    button {
+      font-weight: 700;
+      color: gray;
+      background-color: transparent;
+      border: none;
+      padding: 0 1rem;
     }
+    button:active {
+      color: hsl(220, 98%, 61%);
+    }
+  }
 }
 
 @media screen and (min-width: 850px) {
@@ -114,7 +112,6 @@
             border-radius: 50%;
             border: 1px solid lightgray;
             padding: 8px;
-           
           }
         }
       }
@@ -130,9 +127,7 @@
         display: inline;
         margin-top: 0;
         padding: 0;
-
       }
-      
     }
   }
 }
@@ -143,10 +138,14 @@
   visibility: visible;
 }
 
-.checked {
-  background-image:  linear-gradient(50deg,hsl(192, 100%, 67%) , hsl(280, 87%, 65%)) ;
-}
-
 .strike {
   text-decoration: line-through;
+}
+
+.isChecked {
+  background-image: linear-gradient(
+    50deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
 }
