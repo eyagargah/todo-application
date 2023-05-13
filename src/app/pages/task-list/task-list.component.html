@@ -2,11 +2,11 @@
   <ul *ngFor="let task of tasks">
     <li>
       <div class="task">
-        <button class="checkBtn" (click)="checkTask()">
-          <img src="../../../assets/images/icon-check.svg"  class="checkedImg hide" alt="check button" />
+        <button class="checkBtn" (click)="checkTask($event)">
+          <img src="../../../assets/images/icon-check.svg"  class="checkedImg" alt="check button" />
         </button>
         <h3 class="taskContent ">{{task.task}}</h3>
-        <button class="deleteBtn" (click)="deleteTask()">
+        <button class="deleteBtn" (click)="deleteTask($event)">
           <img src="../../../assets/images/icon-cross.svg" alt="delete" />
         </button>
       </div>
@@ -14,7 +14,6 @@
     <hr />
   </ul>
   <div class="footer">
-    <h4 class="left">{{tasks.length}} items left</h4>
     <div class="tasks-control desktop">
       <button>All</button>
       <button>Active</button>
