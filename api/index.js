@@ -36,6 +36,7 @@ app.get('/tasks', async(req , res)=> {
         const returnedTasks = await tasks.find().toArray()
 
         res.send(returnedTasks)
+
     } finally{
         await client.close()
     }
@@ -57,6 +58,34 @@ app.post('/', async(req , res)=> {
         await tasks.insertOne(data)
     } finally{
         await client.close()
+
+    }
+})
+
+app.put('/', async(req , res)=> {
+    const client = new MongoClient(uri)
+    const formData = req.body.formData
+    
+    try {
+        await client.connect()
+        const db = client.db('app-data')
+        const tasks = db.collection('task')
+
+        const query = {
+            task_id: formData.task_id
+        }
+
+        const updateDocument = {
+            $set: {
+                completed: formData.completed
+            }
+        }
+
+        const insertedTask = await tasks.updateOne(query , updateDocument)
+        res.send(insertedTask)
+    } finally{
+        await client.close()
+
     }
 })
 app.listen(PORT , ()=> console.log('Server running on port : '+ PORT))
