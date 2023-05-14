@@ -80,7 +80,6 @@ app.put('/', async(req , res)=> {
                 completed: formData.completed
             }
         }
-
         const insertedTask = await tasks.updateOne(query , updateDocument)
         res.send(insertedTask)
     } finally{
