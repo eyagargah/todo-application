@@ -10,6 +10,10 @@ import { DataService } from 'src/app/data.service';
 export class TaskListComponent {
   light: any;
   tasks: any;
+  task: any;
+
+  input = document.querySelector('input');
+  completed : any
   formData = {
     completed: false,
   };
@@ -20,6 +24,27 @@ export class TaskListComponent {
     this.getTasks();
 
   }
+
+  addTask = async (e: any) => {
+    if (e.key == 'Enter') {
+      try {
+        this.task = e.target.value;
+        this.completed = false
+        const response = await axios.post('http://localhost:8000/', {
+          task: this.task,
+          completed: this.completed
+        });
+        const success = response.status === 201;
+
+        if (success) {
+          console.log('success');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
 
   getTasks = async () => {
     const response = await axios.get('http://localhost:8000/tasks');
