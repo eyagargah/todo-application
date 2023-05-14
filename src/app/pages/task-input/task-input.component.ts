@@ -12,6 +12,12 @@ export class TaskInputComponent {
   light: any;
   task: any;
   completed : any
+
+  formData = {
+    task_id:'',
+    task:'',
+    completed: false
+   }
   constructor(private data: DataService) {}
 
   ngOnInit() {
@@ -21,7 +27,9 @@ export class TaskInputComponent {
     this.changeTheme();
   }
 
+
   addTask = async (e: any) => {
+    e.preventDefault();
     if (e.key == 'Enter') {
       try {
         this.task = e.target.value;
