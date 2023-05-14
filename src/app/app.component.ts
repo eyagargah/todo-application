@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { DataService } from './data.service';
 
 
 @Component({
@@ -18,10 +17,8 @@ export class AppComponent {
   light: boolean | undefined;
   screenSize = window.screen.availWidth < 600
   body = document.querySelector('body')
- constructor( private data:DataService){}
   ngOnInit(){
 
-    this.data.theme.subscribe( light => this.light = light)
     if(this.body && (!this.screenSize)){
       this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
       this.body.style.backgroundSize = `cover`;
