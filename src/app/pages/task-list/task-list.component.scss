@@ -94,7 +94,6 @@
   }
 }
 .task-input {
-
   position: absolute;
   top: 7rem;
   margin: 0 5% 0 5%;
@@ -119,6 +118,25 @@
     border: 1px solid lightgray;
     padding: 4px;
     //background-image:  linear-gradient(50deg,hsl(192, 100%, 67%) , hsl(280, 87%, 65%)) ;
+  }
+}
+
+.header {
+  position: absolute;
+  top: 3rem;
+  margin: 0 5%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+
+  h1 {
+    color: hsl(0, 0%, 98%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 15px;
+  }
+  .theme-switcher {
+    align-self: center;
   }
 }
 @media screen and (min-width: 850px) {
@@ -172,6 +190,18 @@
       margin-left: 2rem;
       padding: 8px;
       //background-image:  linear-gradient(50deg,hsl(192, 100%, 67%) , hsl(280, 87%, 65%)) ;
+    }
+  }
+  .header {
+    top: 5rem;
+    margin: 0 25%;
+    width: 50%;
+    gap: 40%;
+    h1 {
+      color: hsl(0, 0%, 98%);
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 15px;
     }
   }
 }
