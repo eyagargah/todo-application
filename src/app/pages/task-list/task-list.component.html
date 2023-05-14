@@ -1,3 +1,10 @@
+<div class="task-input light">
+  <button>
+      <img class="hide"src="../../../assets/images/icon-check.svg" alt="">
+  </button>
+  <input type="text" name="task" id="task" placeholder="Create a new todo..." (keydown)="addTask($event)">
+</div>
+
 <div class="task-list">
   <ul *ngFor="let task of tasks">
     <li>
