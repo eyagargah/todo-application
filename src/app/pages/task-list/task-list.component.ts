@@ -10,42 +10,46 @@ import { DataService } from 'src/app/data.service';
 export class TaskListComponent {
   light: any;
   tasks: any;
-
-  isChecked = false;
+  formData = {
+    completed: false,
+  };
   constructor(private data: DataService) {}
+
   ngOnInit() {
     this.data.theme.subscribe((light) => (this.light = light));
     this.getTasks();
+
   }
 
   getTasks = async () => {
     const response = await axios.get('http://localhost:8000/tasks');
 
     this.tasks = response.data;
+   
   };
+
 
   checkTask(e: any) {
     let checkBtn = e.target.parentElement;
-    let checkImg = e.target;
+    let checkImg = e.target.childNodes[0];
+    let taskContent = e.target.parentElement.childNodes[1];
+   
+   if(checkBtn.classList.contains('isChecked')){
+    checkBtn.classList.remove('isChecked');
+    checkImg.classList.add('hide')
+    console.log(checkBtn)
+
+    //checkImg.src = ""
     
-    let taskContent = e.target.parentElement.parentElement.childNodes[1]
-    let text = e.target.parentElement.parentElement.childNodes[1].innerHTML
-    console.log(taskContent)
-    if (!this.isChecked) {
-      this.isChecked = true;
-      checkBtn?.classList.add('isChecked');
-      checkImg?.classList.remove('hide');
-      taskContent.classList.add('strike')
- 
-    } else if(this.isChecked){
-      this.isChecked = false;
-      checkBtn?.classList.remove('isChecked');
-      checkImg?.classList.add('hide');
-      taskContent.classList.remove('strike')
-      
-      
-      
-    }
+   
+   }else{
+    checkBtn.classList.add('isChecked');
+    console.log(checkBtn)
+    checkImg.classList.remove('hide')
+
+    //checkImg.src = "../../../assets/images/icon-check.svg"
+   }
+   
   }
 
   deleteTask(e: any) {
