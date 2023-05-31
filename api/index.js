@@ -23,7 +23,6 @@ app.use(function (req, res, next) {
     next();
   });
 
-
 app.get('/', (req , res)=> {
     res.json('hello from my app')
 })
