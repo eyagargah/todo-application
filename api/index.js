@@ -7,6 +7,8 @@ const uri = 'mongodb+srv://gargaheya:mypassword@cluster0.nfdu7oj.mongodb.net/'
 const app = express()
 
 app.use(express.json())
+
+
 /*******Cors********/
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
