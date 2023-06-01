@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { DataService } from 'src/app/data.service';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +12,12 @@ export class HeaderComponent {
   light: any;
   src = 'assets/images/icon-moon.svg';
   img = document.querySelector('img');
-  constructor(private cookiesService: CookieService , private data: DataService) {}
+  tasks:any
+  constructor(private cookiesService: CookieService , private taskService:TaskService) {}
 
+ 
   ngOnInit(){
-    this.data.theme.subscribe( (light: any) => this.light = light)
+    this.tasks= this.taskService.getTasks()
   }
  
   themeChange(e: any) {
@@ -37,7 +39,7 @@ export class HeaderComponent {
   }
 
   newTheme(){
-    this.data.sendTheme(this.light)
+    
     console.log("🚀 ~ file: header.component.ts:41 ~ HeaderComponent ~ newTheme ~ light:", this.light)
     
   }
