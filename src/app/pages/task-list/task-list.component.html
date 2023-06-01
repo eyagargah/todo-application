@@ -1,24 +1,18 @@
-<div class="header">
-  <h1>TODO</h1>
-  <div class="theme-switcher">
-      <img [src]="src" alt="theme switcher" (click)="themeChange(this)">
-  </div>
-</div>
-<div class="task-input light">
-  <button>
-      <img class="hide"src="../../../assets/images/icon-check.svg" alt="">
-  </button>
-  <input type="text" name="task" id="task" placeholder="Create a new todo..." (keydown)="addTask($event)">
-</div>
-
 <div class="task-list">
   <ul *ngFor="let task of tasks">
     <li>
       <div class="task">
         <button class="checkBtn" (click)="checkTask($event)">
-          <img src="../../../assets/images/icon-check.svg"  class="checkedImg hide" alt="check" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+            <path
+              fill="none"
+              stroke="#FFF"
+              stroke-width="2"
+              d="M1 4.304L3.696 7l6-6"
+            />
+          </svg>
         </button>
-        <h3 class="taskContent ">{{task.task}}</h3>
+        <h3 class="taskContent">{{ task.task }}</h3>
         <button class="deleteBtn" (click)="deleteTask($event)">
           <img src="../../../assets/images/icon-cross.svg" alt="delete" />
         </button>
