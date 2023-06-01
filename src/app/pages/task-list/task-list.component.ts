@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import axios from 'axios';
-import { DataService } from 'src/app/data.service';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -8,77 +8,45 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent {
+  constructor(private taskService: TaskService) {}
   light: any;
-  tasks: any;
-  task: any;
-
+  @Input() tasks: any;
+  src = 'assets/images/icon-moon.svg';
+  img = document.querySelector('img');
   input = document.querySelector('input');
-  completed : any
-  formData = {
-    completed: false,
-  };
-  constructor(private data: DataService) {}
-
-  ngOnInit() {
-    this.data.theme.subscribe((light) => (this.light = light));
-    this.getTasks();
-
-  }
-
-  addTask = async (e: any) => {
-    if (e.key == 'Enter') {
-      try {
-        this.task = e.target.value;
-        this.completed = false
-        const response = await axios.post('http://localhost:8000/', {
-          task: this.task,
-          completed: this.completed
-        });
-        const success = response.status === 201;
-
-        if (success) {
-          console.log('success');
-        }
-      } catch (err) {
-        console.log(err);
+  taskList = document.querySelector('.task-list') as HTMLDivElement;
+  taskInput = document.querySelector('.task-input') as HTMLInputElement;
+  @Output() newItemEvent = new EventEmitter<string>();
+  themeChange(e: any) {
+    if (this.src == 'assets/images/icon-sun.svg') {
+      this.light = true;
+      this.src = 'assets/images/icon-moon.svg';
+      if (this.img) {
+        this.img.style.transitionDelay = '2s ease ';
+        console.log(this.taskList);
+      }
+    } else {
+      this.src = 'assets/images/icon-sun.svg';
+      this.light = false;
+      if (this.img) {
+        this.img.style.transitionDelay = '2s ease ';
       }
     }
-  };
-
-
-  getTasks = async () => {
-    const response = await axios.get('http://localhost:8000/tasks');
-
-    this.tasks = response.data;
-   
-  };
-
+    this.newItemEvent.emit(this.light);
+  }
 
   checkTask(e: any) {
-    let checkBtn = e.target.parentElement;
-    let checkImg = e.target.childNodes[0];
-    let taskContent = e.target.parentElement.childNodes[1];
-   
-   if(checkBtn.classList.contains('isChecked')){
-    checkBtn.classList.remove('isChecked');
-    checkImg.classList.add('hide')
-    console.log(checkBtn)
-
-    //checkImg.src = ""
-    
-   
-   }else{
-    checkBtn.classList.add('isChecked');
-    console.log(checkBtn)
-    checkImg.classList.remove('hide')
-
-    //checkImg.src = "../../../assets/images/icon-check.svg"
-   }
-   
+    let task = e.target.parentElement.parentElement.childNodes[1];
+   console.log(task)
   }
 
   deleteTask(e: any) {
-    let el = (e.target as HTMLElement).parentElement?.parentElement;
-    console.log(el);
+    let task = e.target.parentElement.parentElement.childNodes[1].innerHTML;
+    let taskIndex = this.tasks.indexOf(
+      this.tasks.find((a: { task: any }) => a.task == task)
+    );
+
+    this.tasks.splice(taskIndex, 1);
+    this.taskService.setTasks(this.tasks);
   }
 }
