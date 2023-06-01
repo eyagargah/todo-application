@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-
+import { Component  } from '@angular/core';
+import { TaskService } from './services/task.service';
 
 @Component({
   selector: 'app-root',
@@ -14,58 +13,60 @@ export class AppComponent {
   srcMobileDark = 'assets/images/bg-mobile-dark.jpg';
   srcMobileLight = 'assets/images/bg-mobile-light.jpg';
 
+  tasks: any;
   light: boolean | undefined;
-  screenSize = window.screen.availWidth < 600
-  body = document.querySelector('body')
-  ngOnInit(){
+  screenSize = window.screen.availWidth < 600;
+  body = document.querySelector('body');
 
-    if(this.body && (!this.screenSize)){
+
+
+  ngOnInit() {
+    if (this.body && !this.screenSize) {
       this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
       this.body.style.backgroundSize = `cover`;
       this.body.style.backgroundRepeat = `no-repeat`;
     }
-    if(this.body && (this.screenSize)){
+    if (this.body && this.screenSize) {
       this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
       this.body.style.backgroundSize = `cover`;
       this.body.style.backgroundRepeat = `no-repeat`;
     }
   }
-  
+
+ 
 
   newthemeChange(light: any) {
     this.light = light;
-    if (this.light && this.body && (this.screenSize)) {
+    if (this.light && this.body && this.screenSize) {
       this.body.style.backgroundImage = `url(${this.srcMobileLight})`;
-      this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
-      this.body.style.transition = "1s ease "
+      this.body.style.backgroundColor = 'hsl(236, 33%, 92%)';
+      this.body.style.transition = '1s ease ';
       this.body.style.backgroundSize = `cover`;
       this.body.style.backgroundRepeat = `no-repeat`;
-     
-    } 
+    }
 
-    if (this.light && this.body && (!this.screenSize)) {
+    if (this.light && this.body && !this.screenSize) {
       this.body.style.backgroundImage = `url(${this.srcDesktopLight})`;
-      this.body.style.backgroundColor = "hsl(236, 33%, 92%)"
-      this.body.style.transition = "1s ease "
+      this.body.style.backgroundColor = 'hsl(236, 33%, 92%)';
+      this.body.style.transition = '1s ease ';
       this.body.style.backgroundSize = `cover`;
       this.body.style.backgroundRepeat = `no-repeat`;
-     
-    } 
-    
-      if(this.body && !this.light && (this.screenSize)){
-        this.body.style.backgroundImage = `url(${this.srcMobileDark})`;
-        this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
-        this.body.style.transition = "1s ease "
-        this.body.style.backgroundSize = `cover`;
-        this.body.style.backgroundRepeat = `no-repeat`;
-      }
-    
-      if(this.body && !this.light && (!this.screenSize)){
-        this.body.style.backgroundImage = `url(${this.srcDesktopDark})`;
-        this.body.style.backgroundColor = "hsl(235, 21%, 11%)"
-        this.body.style.transition = "1s ease "
-        this.body.style.backgroundSize = `cover`;
-        this.body.style.backgroundRepeat = `no-repeat`;
-      }
+    }
+
+    if (this.body && !this.light && this.screenSize) {
+      this.body.style.backgroundImage = `url(${this.srcMobileDark})`;
+      this.body.style.backgroundColor = 'hsl(235, 21%, 11%)';
+      this.body.style.transition = '1s ease ';
+      this.body.style.backgroundSize = `cover`;
+      this.body.style.backgroundRepeat = `no-repeat`;
+    }
+
+    if (this.body && !this.light && !this.screenSize) {
+      this.body.style.backgroundImage = `url(${this.srcDesktopDark})`;
+      this.body.style.backgroundColor = 'hsl(235, 21%, 11%)';
+      this.body.style.transition = '1s ease ';
+      this.body.style.backgroundSize = `cover`;
+      this.body.style.backgroundRepeat = `no-repeat`;
+    }
   }
 }
