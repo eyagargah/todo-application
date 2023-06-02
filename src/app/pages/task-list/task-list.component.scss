@@ -1,3 +1,6 @@
+button {
+  cursor: pointer;
+}
 .task-list {
   margin: 0 5% 0 5%;
   border-radius: 5px;
@@ -6,7 +9,7 @@
   width: 90%;
 
   ul {
-    background-color: black;
+    background-color: white;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 
@@ -20,11 +23,14 @@
     li {
       border-radius: 4px;
       list-style: none;
-      .task {
+      .tasks {
         display: flex;
         justify-content: space-between;
         padding: 0.6rem;
         align-items: baseline;
+        .task {
+          display: flex;
+        }
         h3 {
           color: hsl(235, 19%, 35%);
           font-weight: 400;
@@ -40,6 +46,9 @@
           border-radius: 50%;
           border: 1px solid lightgray;
           padding: 4px;
+          svg {
+            pointer-events: none;
+          }
         }
 
         .deleteBtn {
@@ -65,13 +74,17 @@
     color: hsl(235, 19%, 35%);
     padding: 1rem;
     color: gray;
-    h4 {
+    .clear {
       font-weight: 400;
       font-size: 0.8rem;
+      border: none;
+      background-color: transparent;
+      color: gray;
     }
     .desktop {
       display: none;
     }
+    
   }
   .tasks-control {
     background-color: white;
@@ -91,6 +104,9 @@
     button:active {
       color: hsl(220, 98%, 61%);
     }
+    button:focus {
+      color: hsl(220, 98%, 61%);
+    }
   }
 }
 
@@ -103,7 +119,7 @@
     width: 50%;
     ul {
       li {
-        .task {
+        .tasks {
           padding: 1rem;
           h3 {
             margin-left: 4rem;
@@ -147,10 +163,10 @@
 }
 
 .hide {
-  display: none;
+  visibility: hidden;
 }
 .show {
-   display: block;
+   visibility: visible;
 }
 
 .strike {
