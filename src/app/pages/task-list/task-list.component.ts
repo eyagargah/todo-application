@@ -18,7 +18,8 @@ export class TaskListComponent {
   taskInput = document.querySelector('.task-input') as HTMLInputElement;
   @Output() newItemEvent = new EventEmitter<string>();
   ngOnInit(){
-    this.filteredTasks= this.tasks
+    
+    this.filteredTasks=this.tasks
   }
   themeChange(e: any) {
     if (this.src == 'assets/images/icon-sun.svg') {
