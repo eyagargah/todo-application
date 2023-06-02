@@ -11,7 +11,6 @@ export class TaskService {
     return JSON.parse(localStorage.getItem('tasks')|| '[]')
     
   }
-
   setTasks(tasks: any){
     localStorage.setItem('tasks',JSON.stringify(tasks))
   }
