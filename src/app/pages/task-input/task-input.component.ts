@@ -20,7 +20,7 @@ export class TaskInputComponent {
   addTask(e:any){
     if(e.key =='Enter'){
       this.task.task= e.target.value
-
+      console.log(this.task)
       this.tasks.unshift(this.task)
       console.log(this.tasks)
       this.taskService.setTasks(this.tasks)
