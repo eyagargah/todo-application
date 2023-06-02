@@ -1,36 +1,56 @@
 <div class="task-list">
-  <ul *ngFor="let task of tasks">
+  <ul *ngFor="let task of filteredTasks">
     <li>
-      <div class="task">
-        <button class="checkBtn" (click)="checkTask($event)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
-            <path
-              fill="none"
-              stroke="#FFF"
-              stroke-width="2"
-              d="M1 4.304L3.696 7l6-6"
-            />
-          </svg>
-        </button>
-        <h3 class="taskContent">{{ task.task }}</h3>
-        <button class="deleteBtn" (click)="deleteTask($event)">
-          <img src="../../../assets/images/icon-cross.svg" alt="delete" />
-        </button>
+      <div class="tasks">
+        <div class="task" *ngIf="task.completed">
+          <button class="checkBtn isChecked" (click)="checkTask($event)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+              <path
+                fill="none"
+                stroke="#FFF"
+                stroke-width="2"
+                d="M1 4.304L3.696 7l6-6"
+              />
+            </svg>
+          </button>
+          <h3 class="taskContent strike">{{ task.task }}</h3>
+          <button class="deleteBtn" (click)="deleteTask($event)">
+            <img src="../../../assets/images/icon-cross.svg" alt="delete" />
+          </button>
+        </div>
+        <div class="task" *ngIf="!task.completed">
+          <button class="checkBtn" (click)="checkTask($event)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" class="hide">
+              <path
+                fill="none"
+                stroke="#FFF"
+                stroke-width="2"
+                d="M1 4.304L3.696 7l6-6"
+              />
+            </svg>
+          </button>
+          <h3 class="taskContent">{{ task.task }}</h3>
+          <button class="deleteBtn" (click)="deleteTask($event)">
+            <img src="../../../assets/images/icon-cross.svg" alt="delete" />
+          </button>
+        </div>
+       
       </div>
     </li>
     <hr />
   </ul>
   <div class="footer">
+    <div class="tasksTotal">{{tasks.length}} items left</div>
     <div class="tasks-control desktop">
-      <button>All</button>
-      <button>Active</button>
-      <button>Completed</button>
+      <button (click)="filterTask($event)">All</button>
+      <button (click)="filterTask($event)">Active</button>
+      <button (click)="filterTask($event)">Completed</button>
     </div>
-    <h4 class="clear">Clear Completed</h4>
+    <button class="clear" (click)="deleteAll()">Clear Completed</button>
   </div>
   <div class="tasks-control mobile">
-    <button>All</button>
-    <button>Active</button>
-    <button>Completed</button>
+    <button (click)="filterTask($event)">All</button>
+    <button (click)="filterTask($event)">Active</button>
+    <button (click)="filterTask($event)">Completed</button>
   </div>
 </div>
