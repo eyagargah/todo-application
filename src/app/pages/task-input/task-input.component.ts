@@ -5,26 +5,23 @@ import { TaskService } from 'src/app/services/task.service';
 @Component({
   selector: 'app-task-input',
   templateUrl: './task-input.component.html',
-  styleUrls: ['./task-input.component.scss']
+  styleUrls: ['./task-input.component.scss'],
 })
 export class TaskInputComponent {
-  tasks: any
-  task: Task= {
-    task:'',
-    completed:false
+  tasks: any = [];
+  task: Task = new Task();
+  constructor(private taskService: TaskService) {}
+  ngOnInit() {
+    this.tasks = this.taskService.getTasks();
   }
-  constructor(private taskService:TaskService){}
-  ngOnInit(){
-    this.tasks= this.taskService.getTasks()
-  }
-  addTask(e:any){
-    if(e.key =='Enter'){
-      this.task.task= e.target.value
-      console.log(this.task)
-      this.tasks.unshift(this.task)
-      console.log(this.tasks)
+  addTask(e: any) {
+    if (e.key == 'Enter') {
+      this.task.task = e.target.value;
+      this.task.completed = false;
+      this.tasks.unshift(this.task);
       this.taskService.setTasks(this.tasks)
-      e.target.value=''
+      this.task = new Task();
+      e.target.value = '';
     }
   }
 }
