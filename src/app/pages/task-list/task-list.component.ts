@@ -39,11 +39,12 @@ export class TaskListComponent {
     this.newItemEvent.emit(this.light);
   }
 
-  deleteAll(){
-    this.tasks = []
-    this.filteredTasks=[]
+  deleteCompleted(){
+    let completedTasks = this.tasks.filter((t: { completed: boolean; })=> t.completed == true)
+    this.filteredTasks=this.tasks
     this.taskService.setTasks(this.tasks)
   }
+
   filterTask(e:any){
     let filter = e.target.innerHTML
     console.log(filter)
