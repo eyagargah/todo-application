@@ -40,7 +40,6 @@ export class TaskListComponent {
   }
 
   deleteCompleted(){
-    let completedTasks = this.tasks.filter((t: { completed: boolean; })=> t.completed == true)
     this.filteredTasks=this.tasks
     this.taskService.setTasks(this.tasks)
   }
