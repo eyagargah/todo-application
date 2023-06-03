@@ -11,13 +11,7 @@ export class TaskService {
     return JSON.parse(localStorage.getItem('tasks')|| '[]')
     
   }
-  deleteCompletedTasks(tasks:any){
-    let i=0
-    while(i<tasks.length){
-      if(tasks[i].completed == true)
-        tasks.splice(i,1)
-    }
-  }
+  
   setTasks(tasks: any){
     localStorage.setItem('tasks',JSON.stringify(tasks))
   }
