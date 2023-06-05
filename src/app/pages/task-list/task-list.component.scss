@@ -104,6 +104,7 @@ button {
     button:active {
       color: hsl(220, 98%, 61%);
     }
+    
     button:focus {
       color: hsl(220, 98%, 61%);
     }
@@ -173,6 +174,9 @@ button {
   text-decoration: line-through;
 }
 
+.active {
+  color: hsl(220, 98%, 61%);
+}
 .dark {
   background-color: hsl(235, 24%, 19%);
 }
