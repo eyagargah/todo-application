@@ -9,6 +9,9 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
   light: any;
+  allTasks:boolean = false
+  completedTasks:boolean = false
+  activeTasks:boolean = false
   @Input() tasks: any;
   filteredTasks: any
   src = 'assets/images/icon-moon.svg';
@@ -16,10 +19,12 @@ export class TaskListComponent {
   input = document.querySelector('input');
   taskList = document.querySelector('.task-list') as HTMLDivElement;
   taskInput = document.querySelector('.task-input') as HTMLInputElement;
+  allBtn = document.querySelector('.all') as HTMLButtonElement
   @Output() newItemEvent = new EventEmitter<string>();
   ngOnInit(){
-    
-    this.filteredTasks=this.tasks
+    this.tasks= this.taskService.getTasks()
+    console.log(this.allBtn)
+    this.allBtn.click()
   }
   themeChange(e: any) {
     if (this.src == 'assets/images/icon-sun.svg') {
@@ -40,8 +45,11 @@ export class TaskListComponent {
   }
 
   deleteCompleted(){
-    this.filteredTasks=this.tasks
+    this.tasks= this.tasks.filter((t: { completed: boolean; }) => t.completed == false)
+    console.log("🚀 ~ file: task-list.component.ts:43 ~ TaskListComponent ~ deleteCompleted ~ tasks:", this.tasks)
     this.taskService.setTasks(this.tasks)
+    this.filteredTasks=this.tasks
+    console.log("🚀 ~ file: task-list.component.ts:46 ~ TaskListComponent ~ deleteCompleted ~ filteredTasks:", this.filteredTasks)
   }
 
   filterTask(e:any){
@@ -50,7 +58,6 @@ export class TaskListComponent {
     switch(filter){
       case 'All':
         this.filteredTasks=this.tasks
-        console.log(this.tasks.filter((t: { completed: boolean; }) => t.completed == true))
         break
       case 'Completed':
         this.filteredTasks= this.tasks.filter((t: { completed: boolean; }) => t.completed == true)
