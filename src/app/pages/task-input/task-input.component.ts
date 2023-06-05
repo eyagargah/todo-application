@@ -16,6 +16,7 @@ export class TaskInputComponent {
   }
   addTask(e: any) {
     if (e.key == 'Enter') {
+      this.tasks = this.taskService.getTasks();
       this.task.task = e.target.value;
       this.task.completed = false;
       this.tasks.unshift(this.task);
