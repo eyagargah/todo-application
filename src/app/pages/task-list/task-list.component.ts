@@ -23,8 +23,7 @@ export class TaskListComponent {
   @Output() newItemEvent = new EventEmitter<string>();
   ngOnInit(){
     this.tasks= this.taskService.getTasks()
-    console.log(this.allBtn)
-    this.allBtn.click()
+    this.filteredTasks = this.tasks
   }
   themeChange(e: any) {
     if (this.src == 'assets/images/icon-sun.svg') {
@@ -46,10 +45,9 @@ export class TaskListComponent {
 
   deleteCompleted(){
     this.tasks= this.tasks.filter((t: { completed: boolean; }) => t.completed == false)
-    console.log("🚀 ~ file: task-list.component.ts:43 ~ TaskListComponent ~ deleteCompleted ~ tasks:", this.tasks)
     this.taskService.setTasks(this.tasks)
     this.filteredTasks=this.tasks
-    console.log("🚀 ~ file: task-list.component.ts:46 ~ TaskListComponent ~ deleteCompleted ~ filteredTasks:", this.filteredTasks)
+    location.reload
   }
 
   filterTask(e:any){
@@ -58,14 +56,15 @@ export class TaskListComponent {
     switch(filter){
       case 'All':
         this.filteredTasks=this.tasks
+        location.reload
         break
       case 'Completed':
         this.filteredTasks= this.tasks.filter((t: { completed: boolean; }) => t.completed == true)
-       
+        location.reload
         break
       case 'Active':
         this.filteredTasks = this.tasks.filter((t: { completed: boolean; }) => t.completed == false)
-        
+        location.reload
         break
     }
     
