@@ -23,6 +23,7 @@ export class TaskInputComponent {
       this.taskService.setTasks(this.tasks)
       this.task = new Task();
       e.target.value = '';
+      location.reload()
     }
   }
 }
