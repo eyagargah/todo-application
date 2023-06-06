@@ -9,22 +9,19 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
   light: any;
-  allTasks:boolean = false
-  completedTasks:boolean = false
-  activeTasks:boolean = false
   @Input() tasks: any;
-  filteredTasks: any
+  filteredTasks: any;
   src = 'assets/images/icon-moon.svg';
   img = document.querySelector('img');
   input = document.querySelector('input');
   taskList = document.querySelector('.task-list') as HTMLDivElement;
   taskInput = document.querySelector('.task-input') as HTMLInputElement;
-  allBtn = document.querySelector('.all') as HTMLButtonElement
-  @Output() newItemEvent = new EventEmitter<string>();
-  ngOnInit(){
-    this.tasks= this.taskService.getTasks()
-    this.filteredTasks = this.tasks
+  ngOnInit() {
+    this.tasks = this.taskService.getTasks();
+    this.filteredTasks = this.tasks;
+    document.getElementById('all')?.click()
   }
+  
   themeChange(e: any) {
     if (this.src == 'assets/images/icon-sun.svg') {
       this.light = true;
@@ -40,34 +37,31 @@ export class TaskListComponent {
         this.img.style.transitionDelay = '2s ease ';
       }
     }
-    this.newItemEvent.emit(this.light);
   }
 
-  deleteCompleted(){
-    this.tasks= this.tasks.filter((t: { completed: boolean; }) => t.completed == false)
-    this.taskService.setTasks(this.tasks)
-    this.filteredTasks=this.tasks
-    location.reload
+  deleteCompleted() {
+    this.tasks = this.tasks.filter(
+      (t: { completed: boolean }) => t.completed == false
+    );
+    this.taskService.setTasks(this.tasks);
+    this.filteredTasks = this.tasks;
   }
 
-  filterTask(e:any){
-    let filter = e.target.innerHTML
-    console.log(filter)
-    switch(filter){
+  filterTask(e: any) {
+    let filter = e.target.innerHTML;
+    console.log(filter);
+    switch (filter) {
       case 'All':
-        this.filteredTasks=this.tasks
-        location.reload
-        break
+        this.filteredTasks = this.taskService.getTasks();
+        this.tasks = this.taskService.getTasks()
+        break;
       case 'Completed':
-        this.filteredTasks= this.tasks.filter((t: { completed: boolean; }) => t.completed == true)
-        location.reload
-        break
+        this.filteredTasks = this.taskService.getCompletedTasks(this.tasks);
+        break;
       case 'Active':
-        this.filteredTasks = this.tasks.filter((t: { completed: boolean; }) => t.completed == false)
-        location.reload
-        break
+        this.filteredTasks = this.taskService.getActiveTasks(this.tasks);
+        break;
     }
-    
   }
 
   checkTask(e: any) {
@@ -77,17 +71,17 @@ export class TaskListComponent {
       this.tasks.find((t: { task: any }) => t.task == taskContent)
     );
     let checkImg = e.target.childNodes[0];
-    let checkBtn= e.target
+    let checkBtn = e.target;
     if (this.tasks[taskIndex].completed == false) {
       this.tasks[taskIndex].completed = true;
       taskContainer.classList.add('strike');
-      checkImg.classList.remove('hide')
-      checkBtn.classList.add('isChecked')
+      checkImg.classList.remove('hide');
+      checkBtn.classList.add('isChecked');
     } else {
       this.tasks[taskIndex].completed = false;
       taskContainer.classList.remove('strike');
-      checkImg.classList.add('hide')
-      checkBtn.classList.remove('isChecked')
+      checkImg.classList.add('hide');
+      checkBtn.classList.remove('isChecked');
     }
     console.log(this.tasks);
     this.taskService.setTasks(this.tasks);
@@ -100,7 +94,7 @@ export class TaskListComponent {
     );
 
     this.tasks.splice(taskIndex, 1);
-    this.filteredTasks = this.tasks
+    this.filteredTasks = this.tasks;
     this.taskService.setTasks(this.tasks);
   }
 }
