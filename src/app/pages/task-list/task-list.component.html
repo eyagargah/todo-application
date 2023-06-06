@@ -1,4 +1,4 @@
-<div class="task-list">
+<div class="task-list" onload="triggerBtnClick()">
   <ul *ngFor="let task of filteredTasks">
     <li>
       <div class="tasks">
@@ -42,14 +42,14 @@
   <div class="footer">
     <div class="tasksTotal">{{tasks.length}} items left</div>
     <div class="tasks-control desktop">
-      <button class="active"  (click)="filterTask($event)">All</button>
+      <button id="all"  (click)="filterTask($event)">All</button>
       <button (click)="filterTask($event)">Active</button>
       <button (click)="filterTask($event)">Completed</button>
     </div>
     <button class="clear" (click)="deleteCompleted()">Clear Completed</button>
   </div>
   <div class="tasks-control mobile">
-    <button class="active" (click)="filterTask($event)">All</button>
+    <button (click)="filterTask($event)">All</button>
     <button (click)="filterTask($event)">Active</button>
     <button (click)="filterTask($event)">Completed</button>
   </div>
